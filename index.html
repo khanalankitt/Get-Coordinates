@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="image/png" rel="icon" href="https://www.iconpacks.net/icons/2/free-location-icon-2955-thumb.png">
+    <title>Get Coordinates</title>
+</head>
+<body>
+    <br><br><br><br><br><br><br><br><br><br>
+    <center>
+        <h3 class="h2" style="font-family: monospace;width: 80vw;">Click the button to get coordinates</h3>
+        <button 
+            class="btn" 
+            onclick="getLocation()" 
+            style="height: 30px;width: 250px;font-family: monospace;border-radius: 5px;border: none;outline: none;font-size: 18px;background: slateblue;color: white;">Get Coordinates</button>
+    </center>
+    <script>
+        let btn = document.querySelector(".btn");
+        let h2 = document.querySelector(".h2");
+        function getLocation(){
+            if(btn.innerHTML.charAt(0) === 'G'){
+                if("geolocation" in navigator){
+                    navigator.geolocation.getCurrentPosition((position)=>{
+                        h2.innerHTML = `Latitude : ${position.coords.latitude}<br/>Longitude : ${position.coords.longitude}`;
+                    })   
+                    btn.innerHTML = "Hide Coordinates";
+                    
+                }else{
+                    alert("Not Supported");
+                }
+            }else{
+                btn.innerHTML = "Get Coordinates"
+                h2.innerHTML = 'Click the button to get coordinates';
+            }
+        }
+    </script>
+</body>
+</html>
